@@ -20,6 +20,9 @@ h2 {
     justify-content: center;
     gap: 30px;
 }
+.content .container {
+    min-height: 300px;
+}
 .content img {
     width: 850px;
     height: max-content;

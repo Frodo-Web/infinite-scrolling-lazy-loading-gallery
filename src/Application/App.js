@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect, lazy } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Images from './Images';
 import useFetch from './hooks/useFetch';
 import './App.css';
@@ -25,9 +25,9 @@ const App = () => {
 				if (node) observer.current.observe(node);
 			}
 			if (pageNum === 0) {
-				sleep(1000).then(() => {
+	//			sleep(1000).then(() => {
 					registerObserver();
-				})
+	//			})
 			} else {
 				registerObserver();
 			}
@@ -60,14 +60,15 @@ const App = () => {
 					if (images.length - 11 < i) {
 						if (images.length === i + 1) {
 							return (
-								<img key={i} ref={lastImageElementRef} data-src={image} src='./lazyLoadingImages/loading.gif' className='latest last-image'></img>
+								<div className='container'><img key={i} ref={lastImageElementRef} data-src={image} src='./lazyLoadingImages/loading.gif' className='latest last-image'></img></div>
 							);
 						}
-						return <img key={i} data-src={image} className='latest' src='./lazyLoadingImages/loading.gif'></img>
+						return <div className='container'><img key={i} data-src={image} className='latest' src='./lazyLoadingImages/loading.gif'></img></div>
 					} else {
-						return <img key={i} data-src={image} src='./lazyLoadingImages/loading.gif'></img>
+						return <div className='container'><img key={i} data-src={image} src='./lazyLoadingImages/loading.gif'></img></div>
 					}
-				})}
+				}
+				)}
 			</div>
 			<div>{isLoading && "Loading..."}</div>
 		</>
