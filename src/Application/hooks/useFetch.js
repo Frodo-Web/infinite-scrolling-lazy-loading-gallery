@@ -39,7 +39,6 @@ function useFetch(pageNum) {
             const { from, to } = ifHasMore(Images, pageNum * numberToGet, (pageNum * numberToGet) + numberToGet);
             const imageList = getImages(Images, from, to);
             setImages((prev) => {
-                console.log(imageList)
                 return [...prev, ...imageList];
             });
         }
