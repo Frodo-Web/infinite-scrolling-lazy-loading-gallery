@@ -6,8 +6,11 @@ import './App.css';
 const App = () => {
 	const [pageNum, setPageNum] = useState(0);
 	const { isLoading, images, hasMore } = useFetch(pageNum);
+	const [curImageCount, setCurImageCount] = useState(0);
 
 	const observer = useRef();
+	const lazyObserver = useRef();
+
 	const lastImageElementRef = useCallback(
 		(node) => {
 			function sleep(time) {
@@ -19,15 +22,14 @@ const App = () => {
 				observer.current = new IntersectionObserver((entries) => {
 					if (entries[0].isIntersecting && hasMore) {
 						setPageNum((prev) => prev + 1);
-						console.log('Next');
 					}
 				});
 				if (node) observer.current.observe(node);
 			}
 			if (pageNum === 0) {
-	//			sleep(1000).then(() => {
-					registerObserver();
-	//			})
+				//			sleep(1000).then(() => {
+				registerObserver();
+				//			})
 			} else {
 				registerObserver();
 			}
@@ -35,22 +37,34 @@ const App = () => {
 		[isLoading, hasMore]
 	);
 
-	const lazyLoading = () => {
-		let lazyObserver = new IntersectionObserver((entries, lazyObserver) => {
+	useEffect(() => {
+		if (lazyObserver.current) lazyObserver.current.disconnect();
+		lazyObserver.current = new IntersectionObserver((entries, lazyObserver) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
-					console.log(entry);
 					entry.target.src = entry.target.dataset.src;
 					lazyObserver.unobserve(entry.target);
 				}
 			});
 		}, { rootMargin: "0px 0px 0px 0px" });
-		document.querySelectorAll('img.latest').forEach(img => { lazyObserver.observe(img) });
-	}
+	}, []);
+
+	const lazyLoading = () => {
+		document.querySelectorAll('img.latest').forEach(img => { lazyObserver.current.observe(img) });
+	};
+
+	const countImages = () => {
+		const count = document.querySelectorAll('.content img').length;
+		return count;
+	};
 
 	useEffect(() => {
-		lazyLoading();
-	})
+		const count = countImages();
+		if (count > curImageCount) {
+			lazyLoading();
+			setCurImageCount(count);
+		}
+	});
 
 	return (
 		<>
@@ -60,12 +74,24 @@ const App = () => {
 					if (images.length - 11 < i) {
 						if (images.length === i + 1) {
 							return (
-								<div className='container'><img key={i} ref={lastImageElementRef} data-src={image} src='./lazyLoadingImages/loading.gif' className='latest last-image'></img></div>
+								<div className='container'>
+									<a href={image} target="_blank">
+										<img key={i} ref={lastImageElementRef} data-src={image} src='./lazyLoadingImages/loading.gif' className='latest last-image'></img>
+									</a>
+								</div>
 							);
 						}
-						return <div className='container'><img key={i} data-src={image} className='latest' src='./lazyLoadingImages/loading.gif'></img></div>
+						return <div className='container'>
+							<a href={image} target="_blank">
+								<img key={i} data-src={image} className='latest' src='./lazyLoadingImages/loading.gif'></img>
+							</a>
+						</div>
 					} else {
-						return <div className='container'><img key={i} data-src={image} src='./lazyLoadingImages/loading.gif'></img></div>
+						return <div className='container'>
+							<a href={image} target="_blank">
+								<img key={i} data-src={image} src='./lazyLoadingImages/loading.gif'></img>
+							</a>
+						</div>
 					}
 				}
 				)}

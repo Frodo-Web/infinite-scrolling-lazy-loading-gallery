@@ -23,6 +23,9 @@ h2 {
 .content .container {
     min-height: 300px;
 }
+.content img:hover {
+    border: 4px solid rgb(192, 0, 209);
+}
 .content img {
     width: 850px;
     height: max-content;
