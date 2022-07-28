@@ -1,0 +1,36 @@
+{
+  "name": "infinite-scrolling-lazy-loading-gallery",
+  "version": "1.0.0",
+  "description": "Infinite scrolling + image lazy loading demonstration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "buildclientwatch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frodo-Web/infinite-scrolling-lazy-loading-gallery.git"
+  },
+  "keywords": [],
+  "author": "Frodo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Frodo-Web/infinite-scrolling-lazy-loading-gallery/issues"
+  },
+  "homepage": "https://github.com/Frodo-Web/infinite-scrolling-lazy-loading-gallery#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
