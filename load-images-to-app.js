@@ -12,7 +12,7 @@ async function readDir(dirname) {
         const files = await fs.promises.readdir(dirname);
 
         for (const fileName of files) {
-            allResults.push(relativeImagesPath + fileName);
+            allResults.push('./images/' + fileName);
         }
         return allResults;
     } catch (error) {
