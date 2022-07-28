@@ -10,14 +10,27 @@ const App = () => {
 	const observer = useRef();
 	const lastImageElementRef = useCallback(
 		(node) => {
-			if (isLoading) return;
-			if (observer.current) observer.current.disconnect();
-			observer.current = new IntersectionObserver((entries) => {
-				if (entries[0].isIntersecting && hasMore) {
-					setPageNum((prev) => prev + 1);
-				}
-			});
-			if (node) observer.current.observe(node);
+			function sleep (time) {
+				return new Promise((resolve) => setTimeout(resolve, time));
+			}
+			function registerObserver () {
+				if (isLoading) return;
+				if (observer.current) observer.current.disconnect();
+				observer.current = new IntersectionObserver((entries) => {
+					if (entries[0].isIntersecting && hasMore) {
+						setPageNum((prev) => prev + 1);
+						console.log('Next');
+					}
+				});
+				if (node) observer.current.observe(node);
+			}
+			if(pageNum === 0) {
+				sleep(1000).then(() => {
+					registerObserver();
+				})
+			} else {
+				registerObserver();
+			}
 		},
 		[isLoading, hasMore]
 	);

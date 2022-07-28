@@ -33,15 +33,18 @@ function useFetch(pageNum) {
 
         setIsLoading(true);
 
-        if(ifHasMore(Images, pageNum * 10, (pageNum * 10) + 10)) {
-            const { from, to } = ifHasMore(Images, pageNum * 10, (pageNum * 10) + 10);
+        const numberToGet = 10;
+
+        if(ifHasMore(Images, pageNum * numberToGet, (pageNum * numberToGet) + numberToGet)) {
+            const { from, to } = ifHasMore(Images, pageNum * numberToGet, (pageNum * numberToGet) + numberToGet);
             const imageList = getImages(Images, from, to);
             setImages((prev) => {
+                console.log(imageList)
                 return [...prev, ...imageList];
             });
         }
-        const forFuture = ifHasMore(Images, (pageNum + 1) * 10, ((pageNum + 1) * 10) + 10);
-        setHasMore(typeof forFuture === 'object');
+        const forFuture = ifHasMore(Images, (pageNum + 1) * numberToGet, ((pageNum + 1) * numberToGet) + numberToGet);
+        setHasMore(typeof forFuture === 'object' && forFuture !== null);
         setIsLoading(false);
 
     }, [pageNum]);
