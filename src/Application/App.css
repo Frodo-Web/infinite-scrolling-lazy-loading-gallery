@@ -21,6 +21,7 @@ h2 {
     gap: 30px;
 }
 .content .container {
+    min-width: 300px;
     min-height: 300px;
 }
 .content img:hover {
@@ -30,5 +31,6 @@ h2 {
     /* width: 850px */
     width: max-content;
     max-width: 90vw;
+
     height: max-content;
 }
