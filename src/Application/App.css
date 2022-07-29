@@ -18,6 +18,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-end;
     gap: 30px;
 }
 .content .container {
