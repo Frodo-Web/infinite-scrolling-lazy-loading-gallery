@@ -74,22 +74,22 @@ const App = () => {
 					if (images.length - 11 < i) {
 						if (images.length === i + 1) {
 							return (
-								<div className='container'>
+								<div className='container' key={i.toString()}>
 									<a href={image} target="_blank">
-										<img key={i} ref={lastImageElementRef} data-src={image} src='./lazyLoadingImages/loading.gif' className='latest last-image'></img>
+										<img ref={lastImageElementRef} data-src={image} src='./lazyLoadingImages/loading.gif' className='latest last-image'></img>
 									</a>
 								</div>
 							);
 						}
-						return <div className='container'>
+						return <div className='container' key={i.toString()}>
 							<a href={image} target="_blank">
-								<img key={i} data-src={image} className='latest' src='./lazyLoadingImages/loading.gif'></img>
+								<img data-src={image} className='latest' src='./lazyLoadingImages/loading.gif'></img>
 							</a>
 						</div>
 					} else {
-						return <div className='container'>
+						return <div className='container' key={i.toString()}>
 							<a href={image} target="_blank">
-								<img key={i} data-src={image} src='./lazyLoadingImages/loading.gif'></img>
+								<img data-src={image} src='./lazyLoadingImages/loading.gif'></img>
 							</a>
 						</div>
 					}
