@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const relativeArrayPath = './src/Application/Images.js';
+const relativeArrayPath = './src/Application/IMAGE.js';
 const relativeImagesPath = './docs/images';
 const dirname = path.resolve(relativeImagesPath);
 
@@ -22,7 +22,7 @@ async function readDir(dirname) {
 
 readDir(dirname).then(data => {
     const images = JSON.stringify(data);
-    const str = 'const Images = ' + '\n' + images + ';' + '\n\n' + 'export default Images;';
+    const str = 'const IMAGE = ' + '\n' + images + ';' + '\n\n' + 'export default IMAGE;';
     fs.writeFile(
         path.resolve(relativeArrayPath),
         str,

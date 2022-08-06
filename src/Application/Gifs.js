@@ -1,10 +1,11 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import IMAGE from './IMAGE';
+import GIF from './GIF';
 import useFetch from './hooks/useFetch';
+import './Gifs.css';
 
-const Images = () => {
+const Gifs = () => {
 	const [pageNum, setPageNum] = useState(0);
-	const { isLoading, images, hasMore } = useFetch({pageNum, CONTENT: IMAGE});
+	const { isLoading, images, hasMore } = useFetch({pageNum, CONTENT: GIF});
 	const [curImageCount, setCurImageCount] = useState(0);
 
 	const observer = useRef();
@@ -67,7 +68,7 @@ const Images = () => {
 
 	return (
 		<>
-			<h2>Total images: {IMAGE.length}</h2>
+			<h2>Total GIFs: {GIF.length}</h2>
 			<div className='content'>
 				{images.map((image, i) => {
 					if (images.length - 11 < i) {
@@ -100,4 +101,4 @@ const Images = () => {
 	)
 };
 
-export default Images;
+export default Gifs;
