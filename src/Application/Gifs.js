@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import GIF from './GIF';
 import useFetch from './hooks/useFetch';
-import './Gifs.css';
 
 const Gifs = () => {
 	const [pageNum, setPageNum] = useState(0);
@@ -69,7 +68,7 @@ const Gifs = () => {
 	return (
 		<>
 			<h2>Total GIFs: {GIF.length}</h2>
-			<div className='content'>
+			<div className='content gifs'>
 				{images.map((image, i) => {
 					if (images.length - 11 < i) {
 						if (images.length === i + 1) {

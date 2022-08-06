@@ -68,7 +68,7 @@ const Images = () => {
 	return (
 		<>
 			<h2>Total images: {IMAGE.length}</h2>
-			<div className='content'>
+			<div className='content images'>
 				{images.map((image, i) => {
 					if (images.length - 11 < i) {
 						if (images.length === i + 1) {

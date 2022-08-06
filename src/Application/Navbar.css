@@ -1,0 +1,22 @@
+nav {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-size: 46px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+}
+nav.menu {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 20px;
+}
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+.menu .active {
+    color: rgb(4, 153, 212);
+}

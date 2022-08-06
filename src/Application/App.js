@@ -3,6 +3,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Images from './Images';
 import Gifs from './Gifs';
+import './App.css';
 
 const App = () => {
 
